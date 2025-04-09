@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Todočka</title>
+</head>
+<body>
+<h1>Detail Todo #<%= todo.id %></h1>
+
+<p><strong>Titulek:</strong> <%= todo.title %></p>
+<p><strong>Stav:</strong> <%= todo.done ? "Hotovo" : "Nedokončeno" %></p>
+
+<p>
+    <a href="/todos/<%= todo.id %>/toggle">
+        Změnit stav (označit jako <%= todo.done ? "nedokončené" : "hotové" %>)
+    </a>
+</p>
+
+<p>
+    <a href="/todos/<%= todo.id %>/remove" onclick="return confirm('Opravdu smazat?')">Smazat</a>
+</p>
+
+<h2>Změna titulku</h2>
+<form action="/todo/<%= todo.id %>/edit" method="POST">
+    <input type="text" name="title" value="<%= todo.title %>" required />
+    <button type="submit">Uložit změnu</button>
+</form>
+
+<p><a href="/">Zpět na seznam</a></p>
+</body>
+</html>
