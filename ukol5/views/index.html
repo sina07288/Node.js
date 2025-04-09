@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+  />
+  <title><%= title %></title>
+</head>
+<body>
+<h1><%= title.toUpperCase() %></h1>
+
+<ul>
+  <% for (const todo of todos) { %>
+  <li>
+    <a href="/todos/<%= todo.id %>"><%= todo.title %></a> -
+    <strong><%= todo.priority %></strong> -
+    <% if (todo.done) { %>
+    <a href="/todos/<%= todo.id %>/toggle">dokončeno</a>
+    <a href="/todos/<%= todo.id %>/remove">odebrat</a>
+    <% } else { %>
+    <a href="/todos/<%= todo.id %>/toggle">nedokončeno</a>
+    <% } %>
+  </li>
+  <% } %>
+</ul>
+
+<form method="post" action="/todos">
+  <input name="title" placeholder="Nový úkol" required />
+  <select name="priority">
+    <option value="normal" selected>normal</option>
+    <option value="low">low</option>
+    <option value="high">high</option>
+  </select>
+  <button type="submit">Přidat todo</button>
+</form>
+</body>
+</html>
